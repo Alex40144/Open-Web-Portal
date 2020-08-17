@@ -1,0 +1,29 @@
+<html>
+    <head>
+        <link rel="stylesheel" href='/static/style.css' />
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    </head>
+    <body>
+        <form action="/settings" method="POST">
+        <div class="form-group">
+            <label>BG colour</label>
+            <input type="color" class="form-control" id="bgcolour" name="bgcolour">
+            <label>Text</label>
+            <input type="text" class="form-control" id="name" name="name">
+         </div>
+        <button type="Save" class="btn btn-primary">Save</button>
+        </form>
+        <script>
+            $(document).ready(function(){
+                $.getJSON("settings.json", function(settings){
+                    //
+                    $("#name").val(settings.name);
+                    $("#bgcolour").val(settings.bgcolour);
+                    //
+                }).fail(function(){
+                    console.log("An error has occurred.");
+                });  
+            });
+        </script>
+    </body>
+</html>
