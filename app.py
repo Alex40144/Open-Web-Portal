@@ -30,11 +30,7 @@ def settingsjson():
 
 @app.route('/favicon.ico')
 def favicon():
-    return send_file("static/favicon.ico")#
-
-@app.route('/style.css')
-def stylesheet():
-    return send_file("/static/style.css")
+    return send_file("static/favicon.ico")
 
 if __name__ == "__main__":
     app.run(debug=True, host="0.0.0.0")

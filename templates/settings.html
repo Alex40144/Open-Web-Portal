@@ -1,15 +1,15 @@
 <html>
     <head>
-        <link rel="stylesheel" href='/style.css'/>
+        <link rel="stylesheet" href="/static/style.css"/>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
         <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
     </head>
     <body>
         <form action="savesettings" method="post" id="form">
-            <label><input type="color" class="form-control" id="1" name="1"></label>
-            <label><input type="color" class="form-control" id="2" name="2"></label>
-            <label><input type="color" class="form-control" id="3" name="3"></label>
-            <label><input type="color" class="form-control" id="4" name="4"></label>
+            <label class="pixel"><input type="color" class="form-control" id="1" name="1"></label>
+            <label class="pixel"><input type="color" class="form-control" id="2" name="2"></label>
+            <label class="pixel"><input type="color" class="form-control" id="3" name="3"></label>
+            <label class="pixel"><input type="color" class="form-control" id="4" name="4"></label>
             <input type="submit" value="Submit" id="btnSubmit"/>
         </form>
         <script>
@@ -17,6 +17,7 @@
                 $.each(data, function(key, actualdata){
                 $('[name='+key+']', '#form').val(actualdata);
                 document.getElementById(key).value = actualdata;
+                document.getElementById(key).parentNode.style.backgroundColor = document.getElementById(key).value;
                 });
             }
             

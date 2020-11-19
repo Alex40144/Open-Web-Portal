@@ -2,9 +2,9 @@ input[type="color"] {
     visibility: hidden;
 }
   
-label {
-    background-color: rgba(0, 0, 0, 0);
+.pixel {
+    background-color: rgb(0, 0, 0);
     height: 32px;
     width: 32px;
-    position: fixed;
+
 }
