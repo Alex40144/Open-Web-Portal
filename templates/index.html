@@ -1,9 +1,22 @@
 <html>
     <head>
-        <link rel="stylesheet" href='/static/style.css' />
+        <link rel="stylesheet" href='static/style.css' />
     </head>
     <body>
         <h1>Open Web Portal</h1>
-        <h3 onclick="location.href='/settings'">Settings</h3>
+        <p>{{links}}</p>
+        <ol>
+            <!-- For loop logic of jinja template -->
+              
+            {% for key, value in links.items() %}
+                <li>{{key}}</li>
+                <label class="switch">
+                    <input type="checkbox" {% if value["state"] %} checked {% endif %}>
+                    <span class="slider round"></span>
+
+                </label>
+            {% endfor %}
+              
+        </ol>
     </body>
 </html>

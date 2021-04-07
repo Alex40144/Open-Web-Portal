@@ -1,31 +1,24 @@
 from flask import Flask, render_template, request, send_file, jsonify
-import savesettings as s
+
+####Functions for the user to interface with
+
+links = {"lights": {"var" : "one", "state": True}, "music": {"var" : "two", "state": False}, "play": {"var" : "three", "state": True}}
+
+def bind(var, tag):
+    #create a link between the variable and the web page
+    pass
+
+
+
+
+####Functions for us to use
 
 app = Flask(__name__)
 
 @app.route('/')
 def index():
-    return render_template('index.html')
+    return render_template('index.html', len = len(links), links = links)
 
-@app.route('/settings', methods=["GET", "POST"])
-def settings():
-    return render_template('settings.html')
-
-@app.route('/savesettings', methods=["POST"])
-def savesettings():
-    if request.method == "POST":
-        data = request.form["data"].split("&")
-        for element in range(len(data)):
-            data[element] = data[element].split("=")
-            data[element] = data[element][1].replace("%23", "#")
-        print(data)
-        for item in range(len(data)):
-            s.save(str(item+1), data[item])
-    return ('', 204)
-
-@app.route('/settings.json')
-def settingsjson():
-    return send_file("settings.json")
     
 
 @app.route('/favicon.ico')
