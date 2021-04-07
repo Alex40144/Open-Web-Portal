@@ -2,6 +2,7 @@ from flask import Flask, render_template, request, send_file, jsonify
 
 ####Functions for the user to interface with
 
+#this will be empty in production
 links = {"lights": {"var" : "one", "state": True}, "music": {"var" : "two", "state": False}, "play": {"var" : "three", "state": True}}
 
 def bind(var, tag):

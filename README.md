@@ -6,3 +6,5 @@ Trello Board: https://trello.com/b/HMCteiG0/open-web-portal
 What it should be able to do:
     bind variables to sockets
     be able to change these variables on a web page
+
+Need to work out how the imported module can update main file variables
