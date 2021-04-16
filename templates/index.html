@@ -11,7 +11,7 @@
             {% for key, value in links.items() %}
                 <li>{{key}}</li>
                 <label class="switch">
-                    <input type="checkbox" {% if value["state"] %} checked {% endif %}>
+                    <input type="checkbox" value="{{key}}" {% if value["state"] %} checked {% endif %}>
                     <span class="slider round"></span>
 
                 </label>
@@ -19,4 +19,21 @@
               
         </ol>
     </body>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+        var checkboxes = document.querySelectorAll('input[type=checkbox]');
+        
+        for (var checkbox of checkboxes) {
+            checkbox.addEventListener('change', function(event) {
+            if (event.target.checked) {
+                console.log(`${event.target.value} is checked`);
+                fetch('/update/' + event.target.value + '/True')
+            } else {
+                console.log(`${event.target.value} is unchecked`);
+                fetch('/update/' + event.target.value + '/False')
+            }
+            });
+        }
+        }, false);
+    </script>
 </html>
