@@ -35,11 +35,7 @@ def index():
 
 @app.route('/update/<Variable>/<newValue>')
 def update(Variable, newValue):
-    links[Variable]["state"] = newValue
-    print(Variable + " has been updated to " + str(newValue))
     links[Variable]["object"].update(newValue)
-
-    print(links)
 
     return (jsonify(success=True))
 
