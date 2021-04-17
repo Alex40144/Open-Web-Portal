@@ -1,14 +1,14 @@
-import OpenWebPortal as OWP
 import time
+
+import OpenWebPortal as OWP
 
 #OWP.start()
 OWP.start()
 
 
-x=OWP.OWP("Lights", True)
-y=OWP.OWP("Sound", False)
+x=OWP.OWP("Lights", True, "bool")
+y=OWP.OWP("Sound", False, "bool")
+z=OWP.OWP("volume", 10, "int")
 
 while True:
     time.sleep(5)
-    print("x" + str(x.value))
-    print("y" + str(y.value))

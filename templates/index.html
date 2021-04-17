@@ -4,35 +4,53 @@
     </head>
     <body>
         <h1>Open Web Portal</h1>
+        <p>{{links}}</p>
         <ol>
             <!-- For loop logic of jinja template -->
               
             {% for key, value in links.items() %}
                 <li>{{key}}</li>
-                <label class="switch">
-                    <input type="checkbox" value="{{key}}" {% if value["state"] %} checked {% endif %}>
-                    <span class="slider round"></span>
+                <!-- BOOL -->
+                {% if value["type"] == "bool" %}
+                    <label class="switch">
+                        <input type="checkbox" name="{{key}}" {% if value["value"] %} checked {% endif %}>
+                        <span class="slider round"></span>
+                    </label>
+                {% endif %}
 
-                </label>
+                <!-- INT -->
+                {% if value["type"] == "int" %}
+                    <input type="number" name="{{key}}" value="{{value['value']}}">
+                {% endif %}
             {% endfor %}
               
         </ol>
     </body>
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-        var checkboxes = document.querySelectorAll('input[type=checkbox]');
-        
-        for (var checkbox of checkboxes) {
-            checkbox.addEventListener('change', function(event) {
-            if (event.target.checked) {
-                console.log(`${event.target.value} is checked`);
-                fetch('/update/' + event.target.value + '/True')
-            } else {
-                console.log(`${event.target.value} is unchecked`);
-                fetch('/update/' + event.target.value + '/False')
+            var checkboxes = document.querySelectorAll('input[type=checkbox]');
+            var intergers = document.querySelectorAll('input[type=number]');
+            
+            for (var checkbox of checkboxes) {
+                checkbox.addEventListener('change', function(event) {
+                    if (event.target.checked) {
+                        console.log(event.target.name + " updated to True")
+                        fetch('/update/' + event.target.name + '/True')
+                    } else {
+                        console.log(event.target.name + " updated to False")
+                        fetch('/update/' + event.target.name + '/False')
+                    }
+                });
             }
-            });
+
+            for (var integer of intergers) {
+                integer.addEventListener('change', function(event) {
+                    console.log(event.target.name + " updated to " + event.target.value)
+                    fetch('/update/' + event.target.name + '/' + event.target.value )
+
+                });
+            }
         }
-        }, false);
+        , false);
     </script>
 </html>

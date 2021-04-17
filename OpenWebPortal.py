@@ -1,5 +1,6 @@
-from flask import Flask, render_template, request, send_file, jsonify
 import threading
+
+from flask import Flask, jsonify, render_template, request, send_file
 
 ####Functions for the user to interface with
 
@@ -7,17 +8,18 @@ import threading
 links = {}
 
 class OWP():
-    def __init__(self, name, value):
+    def __init__(self, name, value, type):
         self.value = value
         self.name = name
-        links[name]={"state": value, "object": self}
+        self.type = type
+        links[name]={"value": value, "type": type, "object": self}
 
     def value(self):
         return self.value
 
     def update(self, value):
         self.value = value
-        links[self.name]["state"] = value
+        links[self.name]["value"] = value
 
 def start():
     threading.Thread(target=app.run).start()
