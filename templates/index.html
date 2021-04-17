@@ -22,6 +22,16 @@
                 {% if value["type"] == "int" %}
                     <input type="number" name="{{key}}" value="{{value['value']}}">
                 {% endif %}
+
+                <!-- STRING -->
+                {% if value["type"] == "string" %}
+                    <input type="text" name="{{key}}" value="{{value['value']}}">
+                {% endif %}
+
+                <!-- Colour -->
+                {% if value["type"] == "colour" %}
+                    <input type="color" name="{{key}}" value="{{value['value']}}">
+                {% endif %}
             {% endfor %}
               
         </ol>
@@ -30,6 +40,8 @@
         document.addEventListener('DOMContentLoaded', function() {
             var checkboxes = document.querySelectorAll('input[type=checkbox]');
             var intergers = document.querySelectorAll('input[type=number]');
+            var strings = document.querySelectorAll('input[type=text]');
+            var colours = document.querySelectorAll('input[type=color]');
             
             for (var checkbox of checkboxes) {
                 checkbox.addEventListener('change', function(event) {
@@ -46,7 +58,23 @@
             for (var integer of intergers) {
                 integer.addEventListener('change', function(event) {
                     console.log(event.target.name + " updated to " + event.target.value)
-                    fetch('/update/' + event.target.name + '/' + event.target.value )
+                    fetch('/update/' + event.target.name + '/' + event.target.value)
+
+                });
+            }
+
+            for (var string of strings) {
+                string.addEventListener('change', function(event) {
+                    console.log(event.target.name + " updated to " + event.target.value)
+                    fetch('/update/' + event.target.name + '/' + event.target.value)
+
+                });
+            }
+
+            for (var colour of colours) {
+                colour.addEventListener('change', function(event) {
+                    console.log(event.target.name + " updated to " + event.target.value)
+                    fetch('/update/' + event.target.name + '/' + event.target.value)
 
                 });
             }
