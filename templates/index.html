@@ -13,7 +13,7 @@
                 <!-- BOOL -->
                 {% if value["type"] == "bool" %}
                     <label class="switch">
-                        <input type="checkbox" name="{{key}}" {% if value["value"] %} checked {% endif %}>
+                        <input type="checkbox" name="{{key}}" {% if value["value"] == "True" %} checked {% endif %}>
                         <span class="slider round"></span>
                     </label>
                 {% endif %}
@@ -74,7 +74,7 @@
             for (var colour of colours) {
                 colour.addEventListener('change', function(event) {
                     console.log(event.target.name + " updated to " + event.target.value)
-                    fetch('/update/' + event.target.name + '/' + event.target.value)
+                    fetch('/update/' + event.target.name + '/' + event.target.value.replace("#", ""))
 
                 });
             }

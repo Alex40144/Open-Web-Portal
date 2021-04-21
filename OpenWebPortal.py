@@ -19,7 +19,10 @@ class OWP():
 
     def update(self, value):
         self.value = value
-        links[self.name]["value"] = value
+        if self.type == "colour":
+            links[self.name]["value"] = "#" + str(value)
+        else:
+            links[self.name]["value"] = value
 
 def start():
     threading.Thread(target=app.run).start()
