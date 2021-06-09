@@ -1,7 +1,8 @@
 # OpenWebPortal
 
 # How to use:
-* import OpenWebPortal as OWP or import folder.OpenWebPortal as OWP if in subfolder
+* pip install openwebportal
+* import OpenWebPortal as OWP
 * OWP.start() to start the web server
 * define a variable:
     * x=OWP.OWP("string", True)
